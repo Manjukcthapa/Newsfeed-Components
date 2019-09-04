@@ -111,3 +111,15 @@
     font-family: 'Roboto';
     background-color: #fffef7;
   }
+
+  .header {
+    animation: pulse 10s infinite;
+  }
+  @keyframes pulse {
+    0% {
+      background-color: #001F3F;
+    }
+    100% {
+      background-color: #FF4136;
+    }
+  }
