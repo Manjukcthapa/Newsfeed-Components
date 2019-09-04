@@ -8,54 +8,32 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
-let header = document.querySelector('.header');
-let body = document.querySelector('body');
-let menuButton = document.querySelector('.menu-button');
 
-function menuCreator(array) {
-  let div = document.createElement('div');
-  let ul = document.createElement('ul');
-  header.appendChild(div);
-  div.classList.add('menu');
 
-  array.forEach((item) => {
-    let li = document.createElement('li');
-    li.textContent = item;
-    ul.appendChild(li);
-  })
-  div.appendChild(ul);
-  
-  menuButton.addEventListener('click', (event) => {
-    let menu = document.querySelector('.menu');
-    menu.classList.toggle('menu--open');
-  })
-
-  return div;
+const toggleMenu = (event) => {
+  // Toggle the "menu--open" class on your menu refence.
+  menu.classList.add('menu--open');
+  if(menu.classList.contains('slide-right')){
+      menu.classList.remove('slide-right');
+      menu.classList.add('slide-left');
+    
+    } else {
+        menu.classList.add('slide-right');
+        menu.classList.remove('slide-left');
+        
+    }
+    
+    event.stopPropagation();
+    
 }
 
-menuCreator(menuItems);
+// Start Here: Create a reference to the ".menu" class
+const menu = document.querySelector('.menu');
 
-/* 
+// create a reference to the ".menu-button" class
+const menuButton = document.querySelector('.menu-button');
+// Using your menuButton reference, add a click handler that calls toggleMenu
+menuButton.addEventListener('click', toggleMenu);
 
-  Step 1: Write a function that will create a menu component as seen below:
+window.addEventListener('click', toggleMenu);
 
-  <div class="menu">
-    <ul>
-      {each menu item as a list item}
-    </ul>
-  </div>
-
-  The function takes an array as its only argument.
-
-  Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
-  Add those items to the <ul>
-
-  Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
-
-  Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
-
-  Step 5: return the menu component.
-
-  Step 6: add the menu component to the DOM.
-  
-*/
